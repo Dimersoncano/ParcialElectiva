@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel ZzZ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/zHotel.png" type="image/png">
+
+</head>
+<body>
+    <!-- Encabezado del sitio -->
+    <header>
+        <div class="container">
+            <p class="logo">
+                <img src="img/zHotel.png" alt="Logo Hotel ZzZ" class="logo-icon">
+                Hotel ZzZ
+            </p>
+            <nav>
+                <a href="#quienes-somos">Nosotros</a>
+                <a href="#habitaciones">Habitaciones</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#cotizacion">Reservar</a>
+            </nav>
+        </div>
+    </header>
+    
+
+    <!-- Seccion principal/ imagen portada -->
+    <section id="hero">
+        <h1>Descansa como nunca<br>en Hotel ZzZ</h1>
+        <button onclick="abrirModal()">Reservar ahora</button>
+    </section>
+
+    <!-- Seccion sobre el hotel-->
+    <section id="quienes-somos">
+        <div class="container">
+            <h2>¿Quiénes somos?</h2>
+            <p>En Hotel ZzZ ofrecemos un espacio único para tu descanso, con atención personalizada, comodidad y elegancia a tu alcance.</p>
+            
+            <!-- Boton volver inicio -->
+            <a href="#hero" class="boton-casa" title="Volver al inicio">
+                <img src="img/casa.png" alt="Inicio">
+            </a>
+        </div>
+    </section>
+
+    <!-- Seccion habitaciones -->
+    <section id="habitaciones">
+        <div class="container">
+            <h2>Nuestras habitaciones</h2>
+
+        
+            <!-- Tarjeta habitación 1 -->
+            <div class="carta habitacion1">
+                <h3>Suite Deluxe</h3>
+                <button onclick="mostrarInfo('suite')">Ver más</button>     
+            </div>
+
+            <!-- Tarjeta habitación 2 -->
+            <div class="carta habitacion2">
+                <h3>Habitación Doble</h3>
+                <button onclick="mostrarInfo('doble')">Ver más</button>     
+            </div>
+
+            <!-- Tarjeta habitación 3 -->
+            <div class="carta habitacion3">
+                <h3>Habitación Individual</h3>
+                <button onclick="mostrarInfo('individual')">Ver más</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion de servicios -->
+    <section id="servicios">
+        <div class="container">
+            <h2>Nuestros servicios</h2>
+            <div class="servicios-grid">
+                <div class="servicio servicio1">
+                    <h3>Desayuno buffet</h3>
+                </div>
+                <div class="servicio servicio2">
+                    <h3>Spa & Masajes</h3>
+                </div>
+                <div class="servicio servicio3">
+                    <h3>WiFi & Co-working</h3>
+                </div>
+                <div class="servicio servicio4">
+                    <h3>Piscina climatizada</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion de cotizacion / reservas -->
+    <section id="cotizacion">
+        <h3>¿Listo para tu próxima estadía?</h3>
+        <button onclick="abrirModal()">Solicitar cotización</button>
+    </section>
+
+    <!-- Modal para reservas -->
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar" onclick="cerrarModal()">&times;</span>
+            <h2>Reserva tu habitación</h2>
+            <p>Déjanos tus datos y te contactaremos lo antes posible.</p>
+            <input type="text" placeholder="Nombre completo">
+            <input type="email" placeholder="Correo electrónico">
+            <button>Enviar</button>
+        </div>
+    </div>
+
+    <!-- Modal para info de habitaciones -->
+<div id="modalHabitacion" class="modal">
+    <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModalHabitacion()">&times;</span>
+        <h2 id="tituloHabitacion"></h2>
+        <div id="imagenHabitacion" class="imagen-modal"></div>
+        <p id="descripcionHabitacion"></p>
+    </div>
+</div>
+
+    <!-- Pie de pagina -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hotel ZzZ - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Funcion para abrir y cerrar modales -->
+    <script>
+        // Modal de reservación
+        function abrirModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Modal de información de habitaciones
+        function mostrarInfo(tipo) {
+    const modal = document.getElementById("modalHabitacion");
+    const titulo = document.getElementById("tituloHabitacion");
+    const descripcion = document.getElementById("descripcionHabitacion");
+    const imagen = document.getElementById("imagenHabitacion");
+
+    // Limpiar clases previas
+    modal.classList.remove("modal-suite", "modal-doble", "modal-individual");
+
+    if (tipo === "suite") {
+        titulo.textContent = "Suite Deluxe";
+        descripcion.textContent = "Disfruta de una experiencia de lujo con jacuzzi, cama king, minibar y una vista espectacular.";
+        modal.classList.add("modal-suite");
+    } else if (tipo === "doble") {
+        titulo.textContent = "Habitación Doble";
+        descripcion.textContent = "Perfecta para parejas o amigos. Cuenta con dos camas cómodas, aire acondicionado y baño privado.";
+        modal.classList.add("modal-doble");
+    } else if (tipo === "individual") {
+        titulo.textContent = "Habitación Individual";
+        descripcion.textContent = "Ideal para viajeros solitarios. Incluye cama individual, escritorio de trabajo y WiFi de alta velocidad.";
+        modal.classList.add("modal-individual");
+    }
+
+    modal.style.display = "flex";
+}
+
+
+        function cerrarModalHabitacion() {
+            document.getElementById("modalHabitacion").style.display = "none";
+        }
+
+        // Cerrar los modales si se hace clic fuera
+        window.onclick = function(event) {
+            const modalReserva = document.getElementById("modal");
+            const modalHabitacion = document.getElementById("modalHabitacion");
+
+            if (event.target === modalReserva) {
+                cerrarModal();
+            }
+
+            if (event.target === modalHabitacion) {
+                cerrarModalHabitacion();
+            }
+        }
+    </script>
+
+</body>
+</html>
